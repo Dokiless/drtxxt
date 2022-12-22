@@ -1,0 +1,58 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	//接收用户的选择
+	var key int
+	//判断是否还要继续显示菜单
+	var loop = true
+	//定义用户账号密码
+	var userId int
+	var userPwd string
+
+	for loop {
+		fmt.Println("----------欢迎使用海量用户聊天系统----------")
+		fmt.Println("\t\t1.进入聊天")
+		fmt.Println("\t\t2.注册用户")
+		fmt.Println("\t\t3.退出系统")
+		fmt.Println("请选择(1-3):")
+
+		fmt.Scanf("%d\n", &key)
+		switch key {
+		case 1:
+			fmt.Println("登入聊天")
+			loop = false
+
+		case 2:
+			fmt.Println("注册用户")
+			loop = false
+
+		case 3:
+			fmt.Println("退出系统")
+			loop = false
+
+		default:
+			fmt.Println("您的输入有误，请重新输入")
+
+		}
+	}
+	//根据用户的选择，显示新的提示信息
+	if key == 1 {
+
+		fmt.Println("请输入您的账号")
+		fmt.Scanf("%d\n", &userId)
+		fmt.Println("请输入您的密码")
+		fmt.Scanf("%s\n", &userPwd)
+		//登录界面写到另外一个包
+		err := login(userId, userPwd)
+		if err != nil {
+			fmt.Printf("登录失败，err=%v", err)
+		} else {
+			fmt.Println("\n登陆成功")
+		}
+	} else if key == 2 {
+		fmt.Println("请注册新账户")
+	}
+}
